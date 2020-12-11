@@ -1,0 +1,12 @@
+<rss version="2.0">
+    <channel>
+    <title>New Projects</title>
+        <link>https://nebojsa-glavinic.github.io/</link>
+        <description>New project uploaded, check it out.</description>
+    <item>
+    <title>New Skill</title>
+        <link>https://nebojsa-glavinic.github.io/</link>
+        <description>New skill learned, check it out.</description>
+    </item>
+    </channel>
+</rss>
