@@ -248,11 +248,11 @@ window.onload = function() {
 			class: "fa-stack-overflow"
 		},
 		{
-			link: "#",
+			link: "rss.xml",
 			class: "fa-rss"
 		},
 		{
-			link: "#",
+			link: "sitemap.xml",
 			class: "fa-sitemap"
 		},
 	];
@@ -276,27 +276,5 @@ window.onload = function() {
 	myLinks.forEach(element => createLink(element));
 	
 
-
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-	
-	
