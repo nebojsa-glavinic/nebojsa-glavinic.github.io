@@ -4,6 +4,54 @@
     // Remove no-js class
     $('html').removeClass('no-js');
 
+    
+    //typeit
+    new TypeIt("#ng", {
+		strings: "Nebojša Glavinić",
+		speed: 72,
+		waitUntilVisible: true,
+		cursor:false
+	}).go();
+
+
+    //Menu
+	const menuLinks = [
+		{
+			link: "#about",
+			title: "About"
+		},
+		{
+			link: "#experience",
+			title: "Experience"
+		},
+		{
+			link: "#education",
+			title: "Education"
+		},
+		{
+			link: "#projects",
+			title: "Projects"
+		},
+		{
+			link: "#skills",
+			title: "Skills"
+		},
+		{
+			link: "#contact",
+			title: "Contact"
+		},
+	]; 
+	function addMenuLink(menuLink) {
+        var liPlacehoder = document.createElement('li');
+        var linkPlaceholder = document.createElement('a');
+        linkPlaceholder.innerHTML = menuLink.title;
+        linkPlaceholder.href = menuLink.link;
+
+        liPlacehoder.appendChild(linkPlaceholder);
+		document.getElementById('menu').appendChild(liPlacehoder);
+	};
+    menuLinks.forEach(element=>addMenuLink(element));
+
     // Animate to section when nav is clicked
     $('header a').click(function(e) {
 

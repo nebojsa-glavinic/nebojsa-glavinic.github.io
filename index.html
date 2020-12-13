@@ -8,7 +8,9 @@
     <meta name="description" content="My name is Nebojša Glavinić and welcome to my Portfolio, here you can find my Skillset and browse my Projects. If You feel I'm a good pick, Contact Me!">
     <meta name="keywords" content="Portfolio, Nebojša, Glavinić, Project">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,9 +35,9 @@
 
     <div id="lead">
         <div id="lead-content">
-            <h1>Nebojša Glavinić</h1>
-            <h2>Wanna be Software Engineer</h2>
-            <a href="web programiranje.pdf" class="btn-rounded-white">Documentation</a>
+            <h1 id="ng"></h1>
+            <h2 data-aos="zoom-in" data-aos-delay="1900" data-aos-duration="1000">Wanna be Software Engineer</h2>
+            <a href="web programiranje.pdf" target="_blank" class="btn-rounded-white" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="1500">Documentation</a>
         </div>
         <!-- End #lead-content -->
 
@@ -68,8 +70,8 @@
 
     <div id="experience" class="background-alt">
         <h2 class="heading">Experience</h2>
-        <div id="experience-timeline">
-            <div data-date="September 2010 – September 2012">
+        <div id="experience-timeline" data-aos="fade-in" data-aos-anchor-placement="top-center"  data-aos-duration="3000">
+            <div data-date="September 2010 – September 2012" data-aos="fade-up">
                 <h3>EDB doo</h3>
                 <h4>Assistant Project Manager</h4>
                 <ul>
@@ -85,7 +87,7 @@
                 </ul>
             </div>
 
-            <div data-date="September 2013 – September 2016">
+            <div data-date="September 2013 – September 2016" data-aos="fade-up" data-aos-delay="400">
                 <h3>KLIPING doo</h3>
                 <h4>Client Services Manager</h4>
                 <ul>
@@ -104,7 +106,7 @@
                 </ul>
             </div>
 
-            <div data-date="September 2016 – Present">
+            <div data-date="September 2016 – Present" data-aos="fade-up" data-aos-delay="800">
                 <h3>SG ERMIS doo</h3>
                 <h4>Project Manager</h4>
                 <ul>
@@ -132,7 +134,7 @@
 
     <div id="education">
         <h2 class="heading">Education</h2>
-        <div class="education-block">
+        <div class="education-block" data-aos="fade-up" data-aos-duration="1200">
             <h3>University Union Nikola Tesla</h3>
             <span class="education-date">2005 - 2010</span>
             <h4>Bachelor with Honours in Management Engineering</h4>
@@ -142,7 +144,7 @@
         </div>
         <!-- End .education-block -->
 
-        <div class="education-block">
+        <div class="education-block" data-aos="fade-up"  data-aos-duration="1200" data-aos-delay="400">
             <h3>ICT College of Applied Studies</h3>
             <span class="education-date">2019 - Present</span>
             <h4>Bachelor of Science in Computer Science</h4>
@@ -181,10 +183,10 @@
             <div class="inner-width">
                 <!-- test pic-->
                 <div class="testimonial-pics">
-                    <img src="images/client1.jpg" alt="test-1" class="active"/>
-                    <img src="images/client2.jpg" alt="test-2"/>
-                    <img src="images/client3.jpg" alt="test-3"/>
-                    <img src="images/client4.jpg" alt="test-4"/>
+                    <img src="images/client1.jpg" alt="test-1" class="active" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="200" />
+                    <img src="images/client2.jpg" alt="test-2" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="400" />
+                    <img src="images/client3.jpg" alt="test-3" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="600" />
+                    <img src="images/client4.jpg" alt="test-4" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="800" />
                 </div>
                 <!--test content -->
                 <div class="testimonial-contents">
@@ -263,6 +265,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
     <script type="text/javascript" src="js/scripts_vanilla.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

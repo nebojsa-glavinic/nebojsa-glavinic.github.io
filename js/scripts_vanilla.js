@@ -1,108 +1,8 @@
 window.onload = function() {
 
 	
-	//Menu
 
-	const menuLinks = [
-		{
-			link: "#about",
-			title: "About"
-		},
-		{
-			link: "#experience",
-			title: "Experience"
-		},
-		{
-			link: "#education",
-			title: "Education"
-		},
-		{
-			link: "#projects",
-			title: "Projects"
-		},
-		{
-			link: "#skills",
-			title: "Skills"
-		},
-		{
-			link: "#contact",
-			title: "Contact"
-		},
-	]; 
-	function addMenuLink(menuLink) {
-        var liPlacehoder = document.createElement('li');
-        var linkPlaceholder = document.createElement('a');
-        linkPlaceholder.innerHTML = menuLink.title;
-        linkPlaceholder.href = menuLink.link;
-
-        liPlacehoder.appendChild(linkPlaceholder);
-		document.getElementById('menu').appendChild(liPlacehoder);
-	};
-	menuLinks.forEach(element=>addMenuLink(element));
-
-
-	
-	//Form
-	function validateEmail(inEmail) {
-		if (inEmail.value && /(^\w.*@\w+\.\w)/.test(inEmail.value)) {
-			nonErrorField(inEmail);
-			return true;
-		}
-		errorField(inEmail);
-		return false;
-	};
-
-	function validateTextLength(inText, minLength) {
-		if (inText.value.length > minLength) {
-			nonErrorField(inText);
-			return true;
-		}
-		errorField(inText);
-		return false;
-	}
-
-	function errorField(inField) {
-		inField.style.border = "thick solid red";
-		document.getElementById(inField.id + '-error-message').innerHTML = inField.getAttribute('data-message');
-	}
-
-	function nonErrorField(inField) {
-		inField.style.border = "";
-		document.getElementById(inField.id + '-error-message').innerHTML = '';
-	}
-
-	document.getElementById("_replyto").addEventListener("blur", function(event) {
-		event.preventDefault();
-		validateEmail(document.getElementById('_replyto'));
-	});
-
-	document.getElementById("_message").addEventListener("blur", function(event) {
-		event.preventDefault();
-		validateTextLength(this, 10);
-	});
-
-	document.getElementById("submit_email").addEventListener("click", function(event){
-		event.preventDefault();
-
-		var validEmail = false, validText = false;
-
-		var elReplyEmail = document.getElementById('_replyto');
-		const replyEmail = elReplyEmail.value;
-
-		var elMessage = document.getElementById('_message');
-		const emailMessage = elMessage.value;
-
-		validEmail = validateEmail(elReplyEmail);
-		validText = validateTextLength(elMessage, 20);
-
-		if (validEmail && validText) {
-			document.getElementById("contact").innerHTML = "<h2>Thank you on your email, I'll make sure I get back to you as soon as possible</h2>";
-		}
-	});
-
-
-	//Skills
-	
+	//Skills - Start
 	const mySkillset = ['HTML 5', 'CSS 3','Javascript', 'JQuery', 'Bootstrap', 'Materialize', 'SASS', 'SQL', 'C#', 'Phyton', 'Ruby', 'PHP'];
 	var ulElement = document.getElementById('skillset');
 
@@ -113,9 +13,8 @@ window.onload = function() {
 	}
 
 	mySkillset.forEach(element => appendSkillsetElement(element));
-
-	//Projects
-
+	//Skills - End
+	//Projects - Start
 	const myProjects = [
 		{
 			id: 1,
@@ -210,7 +109,7 @@ window.onload = function() {
         document.getElementById('list_projects').insertBefore(mainProjectDiv, divLoad);
 	};
 
-	// This is if we want to load all projects at once
+	// Loading all projects at once
 	// myProjects.forEach(element => addProject(element));   
 
 	addProject(myProjects[0]);
@@ -224,8 +123,66 @@ window.onload = function() {
 		} 
 	};
 
-	//Social
+	//Projects - End
+	//Form - Start
+	function validateEmail(inEmail) {
+		if (inEmail.value && /(^\w.*@\w+\.\w)/.test(inEmail.value)) {
+			nonErrorField(inEmail);
+			return true;
+		}
+		errorField(inEmail);
+		return false;
+	};
 
+	function validateTextLength(inText, minLength) {
+		if (inText.value.length > minLength) {
+			nonErrorField(inText);
+			return true;
+		}
+		errorField(inText);
+		return false;
+	}
+
+	function errorField(inField) {
+		inField.style.border = "thick solid red";
+		document.getElementById(inField.id + '-error-message').innerHTML = inField.getAttribute('data-message');
+	}
+
+	function nonErrorField(inField) {
+		inField.style.border = "";
+		document.getElementById(inField.id + '-error-message').innerHTML = '';
+	}
+
+	document.getElementById("_replyto").addEventListener("blur", function(event) {
+		event.preventDefault();
+		validateEmail(document.getElementById('_replyto'));
+	});
+
+	document.getElementById("_message").addEventListener("blur", function(event) {
+		event.preventDefault();
+		validateTextLength(this, 10);
+	});
+
+	document.getElementById("submit_email").addEventListener("click", function(event){
+		event.preventDefault();
+
+		var validEmail = false, validText = false;
+
+		var elReplyEmail = document.getElementById('_replyto');
+		const replyEmail = elReplyEmail.value;
+
+		var elMessage = document.getElementById('_message');
+		const emailMessage = elMessage.value;
+
+		validEmail = validateEmail(elReplyEmail);
+		validText = validateTextLength(elMessage, 20);
+
+		if (validEmail && validText) {
+			document.getElementById("contact").innerHTML = "<h2>Thank you on your email, I'll make sure I get back to you as soon as possible</h2>";
+		}
+	});
+	//Form - End
+	//Social -start
 	const myLinks = [
 		{
 			link: "https://github.com/",
@@ -257,7 +214,6 @@ window.onload = function() {
 		},
 	];
 
-
     function createLink(dictLink) {
     	var liPlacehoder = document.createElement('li');
     	var linkPlaceholder = document.createElement('a');
@@ -277,4 +233,4 @@ window.onload = function() {
 	
 
 };
-
+//Social - End
