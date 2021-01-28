@@ -1,9 +1,14 @@
 window.onload = function() {
-
 	
+	//============== AOS ==================
+	AOS.init();
+	
+	//======== Initalize validator =========
+	var validator = new Validator();
+	validator.init(document.getElementById('contact-form-main'));
 
-	//Skills - Start
-	const mySkillset = ['HTML 5', 'CSS 3','Javascript', 'JQuery', 'Bootstrap', 'Materialize', 'SASS', 'SQL', 'C#', 'Phyton', 'Ruby', 'PHP'];
+	//============== <skills> ==============
+	const mySkillset = ['HTML 5', 'CSS 3','Javascript', 'jQuery', 'Bootstrap', 'Materialize', 'SASS', 'SQL', 'C#', 'Phyton', 'Ruby', 'PHP'];
 	var ulElement = document.getElementById('skillset');
 
 	function appendSkillsetElement(elSkil) {
@@ -13,13 +18,14 @@ window.onload = function() {
 	}
 
 	mySkillset.forEach(element => appendSkillsetElement(element));
-	//Skills - End
-	//Projects - Start
+	//============= </skills> ===============
+
+	//============  <projects> ===============
 	const myProjects = [
 		{
 			id: 1,
 		    title:   "Sports School",
-		    description: "The Sports School was established with the vision to integrate sports and education to encourage young sports enthusiasts and support professional athletes. Established In 2011, The Sports School is the only institution in Serbia that integrates sports and education to create the perfect training ground for champions of tomorrow. The Sports School offers an educational curriculum that instead of just including sports, has academics built around sports.",
+		    description: "The Sports School was established with the vision to integrate sports and education to encourage young sports enthusiasts and support professional athletes. Established In 2011, The Sports School is the only institution in Serbia that integrates sports and education to create the perfect training ground for champions of tomorrow. They offer an educational curriculum that has academics built around sports.",
 		    image: "images/project_sport.jpg",
 		    link: "https://skolasportalavovi.000webhostapp.com/",
 		    skills: ['PHP', 'Javascript']
@@ -27,7 +33,7 @@ window.onload = function() {
 		{
 			id: 2,
 		    title:   "Prestige Computer Solutions",
-		    description: "Prestige Computer Solutions is the leading online store offering IT products, services and solutions to corporate and institutional customers in Serbia.",
+		    description: "Prestige Computer Solutions is the leading online store offering IT products, services and solutions to corporate and institutional customers in Serbia. They are committed to being a globally diverse and inclusive company. They treat all people fairly, recognize individuality, promote based on performance and encourage everyone to reach their full potential.",
 		    image: "images/project_computersolution.jpg",
 		    link: "https://nebojsa-glavinic.github.io/PrestigeComputerSolutions/",
 		    skills: ['PHP', 'Javascript', 'HTML 5']
@@ -43,10 +49,10 @@ window.onload = function() {
 		{
 			id: 4,
 		    title:   "Davenport Blazers",
-		    description: "Devon Davenport is a fashion designer from Raleigh, North Carolina with ambitions to catalyze the evolution of the men’s blazer through aesthetic and functional innovation. After graduating from North Carolina State University with a degree in biochemistry and moving to New York city to begin a career in high-throughput automated genomic sequencing, devon realized the need to be comfortable, fashionable, and appropriate at all times in order to ensure access and entry to events, venues, and business meetings with little or late notice.",
+		    description: "Devon Davenport is a fashion designer from Raleigh, North Carolina with ambitions to catalyze the evolution of the men’s blazer through aesthetic and functional innovation. After graduating with a degree in biochemistry and moving to New York city to begin a career in high-throughput automated genomic sequencing...",
 		    image: "images/project_blazer.jpg",
 		    link: "https://nebojsa-glavinic.github.io/portfolio_school/#projects",
-		    skills: ['PHP', 'Javascript', 'Phyton', 'SQL']
+		    skills: ['PHP', 'jQuery', 'Phyton', 'SQL']
 		},
 	];
 
@@ -123,66 +129,11 @@ window.onload = function() {
 		} 
 	};
 
-	//Projects - End
-	//Form - Start
-	function validateEmail(inEmail) {
-		if (inEmail.value && /(^\w.*@\w+\.\w)/.test(inEmail.value)) {
-			nonErrorField(inEmail);
-			return true;
-		}
-		errorField(inEmail);
-		return false;
-	};
-
-	function validateTextLength(inText, minLength) {
-		if (inText.value.length > minLength) {
-			nonErrorField(inText);
-			return true;
-		}
-		errorField(inText);
-		return false;
-	}
-
-	function errorField(inField) {
-		inField.style.border = "thick solid red";
-		document.getElementById(inField.id + '-error-message').innerHTML = inField.getAttribute('data-message');
-	}
-
-	function nonErrorField(inField) {
-		inField.style.border = "";
-		document.getElementById(inField.id + '-error-message').innerHTML = '';
-	}
-
-	document.getElementById("_replyto").addEventListener("blur", function(event) {
-		event.preventDefault();
-		validateEmail(document.getElementById('_replyto'));
-	});
-
-	document.getElementById("_message").addEventListener("blur", function(event) {
-		event.preventDefault();
-		validateTextLength(this, 10);
-	});
-
-	document.getElementById("submit_email").addEventListener("click", function(event){
-		event.preventDefault();
-
-		var validEmail = false, validText = false;
-
-		var elReplyEmail = document.getElementById('_replyto');
-		const replyEmail = elReplyEmail.value;
-
-		var elMessage = document.getElementById('_message');
-		const emailMessage = elMessage.value;
-
-		validEmail = validateEmail(elReplyEmail);
-		validText = validateTextLength(elMessage, 20);
-
-		if (validEmail && validText) {
-			document.getElementById("contact").innerHTML = "<h2>Thank you on your email, I'll make sure I get back to you as soon as possible</h2>";
-		}
-	});
-	//Form - End
-	//Social -start
+	//=============== </project> ==============
+	
+	
+	//=============== <social> ================
+	
 	const myLinks = [
 		{
 			link: "https://github.com/",
@@ -231,6 +182,122 @@ window.onload = function() {
 
 	myLinks.forEach(element => createLink(element));
 	
+	//============ </social> ===============
 
+	//=========== <submit> =================
+	document.getElementById("submit_email").addEventListener("click", function(event) {
+		event.preventDefault();
+	
+		if (validator.isValid()) {
+			document.getElementById("contact").innerHTML = "<h2>Thank you on your email, I'll make sure I get back to you as soon as possible</h2>";
+		}
+	});
+	//=========== </submit> =================
 };
-//Social - End
+
+//================ <form> ==================
+var Validator = function() {};
+
+Validator.prototype.validate = function(value, rules) {
+    var self = this;
+    return rules.every(function(rule) {
+        return self[rule](value);
+    });
+};
+//fullName
+Validator.prototype.isString = function(value) {
+    return value && /^[A-ZŠĐČĆŽ][a-zšđčćž]{2,14}(\s[A-ZŠĐČĆŽ][a-zšđčćž]{2,19})+$/.test(value);
+};
+//message
+Validator.prototype.isNotEmpty = function(value) {
+    var numberOfSpaces = _message.value.replace(/[^\s]/mg, "").length;
+    var numberOfChars = _message.value.length - numberOfSpaces;
+    //console.log('--->', value);
+    if (numberOfChars<15){
+        return false;
+    }
+    return value;
+};
+//phoneNumber
+Validator.prototype.isInt = function(value) {
+    return value && /^\+381\s[1-9][0-9]\s[0-9]{3}\s[0-9]{3,4}$/.test(value);
+};
+
+//email
+Validator.prototype.isEmail = function(value) {
+    return value && /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+};
+
+Validator.prototype.validateMyWork = function(value) {
+    return value != "How do you like my work?";
+};
+
+Validator.prototype.errorField = function(field) {
+    field.style.border = "thin solid darkred";
+    if (document.getElementById(field.id + '-error-message')){
+		document.getElementById(field.id + '-error-message').innerHTML = field.getAttribute('data-message')
+		document.getElementById(field.id + '-example-message').style.display="block";
+	}
+
+	else console.log('---->', field.id);
+};
+
+Validator.prototype.nonErrorField = function(field) {
+    field.style.border = "";
+    if (document.getElementById(field.id + '-error-message')){
+		document.getElementById(field.id + '-error-message').innerHTML = '';
+		document.getElementById(field.id + '-example-message').style.display="none";
+	}	
+    else console.log('---->', field.id);
+};
+
+Validator.prototype.init = function(form) {
+    var obj = this;
+    obj._form = form;
+    obj._selector = form.querySelectorAll( 'input[type="text"], input[type="email"], input[type="hidden"], input[type="radio"], input[type="checkbox"], select, textarea' );
+    obj._formElements = {};
+
+    [].forEach.call(obj._selector, function( element ) { 
+        obj._formElements[element.id] = {'id': element.id, 'valid': false};
+
+        element.addEventListener("blur", function(event) {
+            if (obj.validate(element.value, [ element.getAttribute('data-validator') ] )) {
+                obj._formElements[element.id]['valid'] = true;
+                obj.nonErrorField(element);
+            } else {
+                obj._formElements[element.id]['valid'] = false;
+                obj.errorField(element);
+            }
+        }); 
+    } );
+};
+
+Validator.prototype._validate = function(form) {
+    var obj = this;
+    [].forEach.call(obj._selector, function( element ) { 
+        obj._formElements[element.id] = {'id': element.id, 'valid': false};
+
+         if (obj.validate(element.value, [element.getAttribute('data-validator')])) {
+            obj._formElements[element.id]['valid'] = true;
+            obj.nonErrorField(element);
+        } else {
+            obj._formElements[element.id]['valid'] = false;
+            obj.errorField(element);
+        }
+    } );
+};
+
+Validator.prototype.isValid = function() {
+    var obj = this;
+
+    obj._validate();
+    
+    for (const [key, value] of Object.entries(obj._formElements)) {
+        if (!value['valid'])
+            return false;
+    }
+
+    return true;
+};
+
+//=============== </form> ===============

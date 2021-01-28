@@ -1,6 +1,6 @@
 
 (function($) {
-
+    
     // Remove no-js class
     $('html').removeClass('no-js');
 
@@ -13,7 +13,97 @@
 		cursor:false
 	}).go();
 
+    //About - img slider
+	$(document).ready(function(){
+		slideShow();
+	   });
+		function slideShow() {
+		var current = $('.pic .show');
+		var next = current.next().length ? current.next() : current.parent().children(':first');
+	   
+		current.hide().removeClass('show');
+		next.fadeIn().addClass('show');
+	   
+        setTimeout(slideShow, 4400);
+    }
 
+    //All Projects - slick plugin
+    
+    $('.responsive').slick({
+        dots: true,
+        infinite: true,
+        autoplay:true,
+        autoplaySpeed: 2000,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        responsive: [
+            {
+            breakpoint: 1280,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+                }
+            },
+            {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+                }
+            },
+            {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+            },
+            {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows:false
+            }
+          }
+        ]
+    });
+    //Counter - Statistics
+    function counterUp(elem, duration, delay){
+		var animationStarted = false;
+		var value = parseFloat(elem.innerText);
+		var starter = 0;
+		var steps = duration / delay;
+		var step = value / steps;
+		elem.innerText = starter;
+		function startAnimate(){
+		    var intId = setInterval(function(){
+		        if  (starter >= value){
+		            starter = value;
+		            clearInterval(intId);
+		        }
+		        elem.innerText = starter.toFixed(0);
+		        starter += step;
+		    }, delay)
+		}
+		document.addEventListener("scroll", function(){
+		    //var windowHeight = window.innerHeight;
+		    var scrollTop = elem.getBoundingClientRect().top;
+		    if(scrollTop < 800 && !animationStarted){
+		        startAnimate();
+		        animationStarted = true;
+		    }
+		});
+	}
+	var elements = document.querySelectorAll(".count");
+	elements.forEach(function(el){
+		counterUp(el, 2000, 20);
+	});
     //Menu
 	const menuLinks = [
 		{
